@@ -20,8 +20,16 @@
             <div class="col-sm-2">
                 <center><img src="{% static 'images/blogimg.jpg' %}" class="responsive-img" style="max-height:150px"/></center>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-9">
                 <center><h1>ホーム</h1></center>
+            </div>
+            <div class="col-sm-1">
+                {% if user.username %}
+                    <p>Hello {{user.username}} </p>
+                    <p><a href="{% url 'logout' %}">logout</a></p>
+                {% else %}
+                    <p><a href="{% url 'register' %}">Register</a>|<a href="{% url 'login' %}">Login</a></p>
+                {% endif %}
             </div>
         </div>
         <div class ="row">
