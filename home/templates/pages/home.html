@@ -1,11 +1,48 @@
 {% extends 'pages/base.html' %}
+{% load static %}
+
 
 {% block title %}Home{% endblock title %}
 
-{% block content %}     
-    <p>名前: NGUYEN QUOC DINH </p>
-    <p>生年月日：1994 </p>
-    <p>出身地:ドンナイ</p>
-
+{% block content %}  
+      <!-- revolution slider -->
+      <div class="banner-slider">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-md-7">
+                  <div id="slider_main" class="carousel slide" data-ride="carousel">
+                     <!-- The slideshow -->
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <img src="{% static 'images/slider_1.png' %}" alt="#" />
+                        </div>
+                        <div class="carousel-item">
+                           <img src="{% static 'images/slider_1.png' %}" alt="#" />
+                        </div>
+                     </div>
+                     <!-- Left and right controls -->
+                     <a class="carousel-control-prev" href="#slider_main" data-slide="prev">
+                     <i class="fa fa-angle-left" aria-hidden="true"></i>
+                     </a>
+                     <a class="carousel-control-next" href="#slider_main" data-slide="next">
+                     <i class="fa fa-angle-right" aria-hidden="true"></i>
+                     </a>
+                  </div>
+               </div>
+               <div class="col-md-5">
+                  <div class="full slider_cont_section">
+                     
+                     <h3>NGUYEN QUOC DINH</h3>
+                     <p>生年月日：1994 </br>出身地 : ベトナム</br>所属 : システム開発部</p>
+                     <p>＊スキル</br>開発言語：VB.NET,PHP,PYTHON</p>
+                     <div class="button_section">
+                        <a href="about.html">Read More</a>
+                        <a href="contact.html">Contact Us</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end revolution slider -->
 {% endblock content %}
-

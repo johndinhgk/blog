@@ -1,23 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <title>Login</title>
-   
-    
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login Template</title>
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
-
 <body>
-        <form method = 'POST'> 
-            {% csrf_token %}
-            {%for key,value in form.errors.item%}
-                {{value}}
-            {% endfor %}
-            <p><label>Account :</label>{{form.username}}</p>
-            <p><label>Password :</label>{{form.password}}</p>
-            <input type="hidden" name='next' value="/">
-            <input type="submit" value="Login" />
-        </form>
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 login-section-wrapper">
+          <div class="login-wrapper my-auto">
+            <h1 class="login-title">ログイン</h1>
+            <form method = 'POST'>
+              {% csrf_token %}
+                {%for key,value in form.errors.item%}
+                    {{value}}
+                {% endfor %}
+              <div class="form-group">
+                <label for="email">ユーザー</label></br>
+                {{form.username}}
+              </div>
+              <div class="form-group mb-4">
+                <label for="password">パスワード</label></br>
+                {{form.password}}
+              </div>
+              <input type="hidden" name='next' value="/">
+              <input id="login" class="btn btn-block login-btn" type="submit" value="ログイン">
+            </form>
+            <p class="login-wrapper-footer-text">アカウントをお持ちでない方はこちら</br><a href="{% url 'register' %}" class="text-reset" >新規会員登録</a></p>
+          </div>
+        </div>
+        <div class="col-sm-6 px-0 d-none d-sm-block">
+          <img src="{% static 'images/login.jpg' %}" alt="login image" class="login-img">
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
-
 </html>

@@ -3,10 +3,10 @@ import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 class RegistrationForm(forms.Form):
-    username = forms.CharField(label='Username',max_length=30)
-    email = forms.EmailField(label='Email')
-    password1 = forms.CharField(label='Password',widget=forms.PasswordInput())
-    password2 = forms.CharField(label='Re-Password',widget=forms.PasswordInput())
+    username = forms.CharField(label='ユーザー名',max_length=30)
+    email = forms.EmailField(label='メール')
+    password1 = forms.CharField(label='パスワード',widget=forms.PasswordInput())
+    password2 = forms.CharField(label='パスワード再入力',widget=forms.PasswordInput())
 
     def clean_password2(self):
         if 'password1' in self.cleaned_data:
