@@ -1,16 +1,54 @@
 {% extends 'pages/base.html' %}
-
+{% load static %}
 {% block title %}Blog{% endblock title %}
 
-{% block content %}     
-    {% for post in Posts  %}
-        <h4>{{post.date|date:"d-m-Y"}}<a href="/blog/{{post.id}}">{{post.title}}</a></h4>
-        <img src = "{{post.image.url}}" width="500px" height="300px" />
-    {% endfor %}
+{% block content %}  
+      
+<div class="Blog-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="Blogheading">
+               <h3>Blog </h3>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 
-<br/>
-{% if page_obj.has_next %}
-    <a href="{{request.path}}?page={{page_obj.next_page_number}}">Next</a>
-{%endif%}
 
+
+      <!-- section --> 
+      <div class="section layout_padding blog_blue_bg light_silver">
+         <div class="container">
+            
+            <div class="row">
+               <div class="col-md-8 offset-md-2">
+                  <div class="full">
+                     {% for post in Posts  %}
+                     <div class="big_blog">
+                        <img class="img-responsive" src="{{post.image.url}}" alt="#" />
+                     </div>
+                     <div class="blog_cont_2">
+                        <h3><a href="/blog/{{post.id}}">{{post.title}}</h3>
+                        <p class="sublittle">{{post.date|date:"d-m-Y"}}</p>
+                     </div>
+                      {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end section -->
+       {% if page_obj.has_next %}
+      <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+         <li class="page-item" style="center">
+            <a class="page-link" href="{{request.path}}?page={{page_obj.next_page_number}}">Next</a>
+         </li>
+      </ul>
+      </nav>
+      {%endif%}
+     
+      
 {% endblock content %}

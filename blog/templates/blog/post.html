@@ -1,23 +1,109 @@
 {% extends 'pages/base.html' %}
+{% load static %}
+{% block title %}Blog Detail{% endblock title %}
 
-{% block title %}{{post.title}}{% endblock title %}
+{% block content %}  
+      
+<div class="Blog-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="Blogheading">
+               <h3>Blog Detail </h3>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+      <!-- section --> 
+      <div class="section layout_padding blog_blue_bg light_silver">
+         <div class="container">
+            
+            <div class="row">
+               <div class="col-md-8 offset-md-2">
+                  <div class="full">
+                     <div class="big_blog">
+                        <img class="img-responsive" src = "{{post.image.url}}" alt="#" />
+                     </div>
+                     <div class="blog_cont_2">
+                        <h3><a href='{% url 'post' post.id %}'>{{post.title}}</a></h3>
+                        <p class="sublittle">{{post.date}}</p>
+                        <p>{{post.body|safe|linebreaks}}</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end section -->
 
-{% block content %}     
-   <h3><a href='{% url 'post' post.id %}'>{{post.title}}</a></h3>
-    <img src = "{{post.image.url}}" width="500px" height="300px" />
-   <h6>on {{post.date}}</h6>
-   {{post.body|safe|linebreaks}}
-   {% for comment in post.comments.all %}
-      <h4><strong>{{comment.author}}</strong></h4>
-      <h6><p>{{comment.date}}</p></h6>
-      <p>{{comment.body|linebreaks}}</p>
-   {% endfor %}
-   {% if user.username %}
-      <form action="{% url 'post' post.id %}" method='POST'>
-         {% csrf_token %}
-         <p><label>Comment:</label></p>
-         {{form.body}}
-         </br>
-         <input type="submit" value="Comment" />
-   {%endif%}
+<!-- section -->
+      <section class="layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="heading" style="padding-left: 15px;padding-right: 15px;">
+                     <h4 style="border-bottom: solid #333 1px;">Comments</h4>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+                  {% for comment in post.comments.all %}
+                  <div class="full comment_blog_line">
+                      
+                     <div class="row">                       
+                        <div class="col-md-9">
+                           <div class="full contact_text">
+                              <h3>{{comment.author}}</h3>
+                              <h4>{{comment.date}}</h4>
+                              <p>
+                                 {{comment.body|linebreaks}}
+                              </p>
+                           </div>
+                        </div>                       
+                     </div>                      
+                  </div>
+                  {% endfor %}
+               </div>
+            </div>
+            
+            <div class="row margin_top_30">
+               <div class="col-md-12 margin_top_30">
+                  <div class="heading" style="padding-left: 15px;padding-right: 15px;">
+                     <h4>Post : Your Comment</h4>
+                  </div>
+               </div>
+            </div>
+            {% if user.username %}
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="full comment_form">
+                     <form action="{% url 'post' post.id %}" method='POST'>
+                        {% csrf_token %}
+                        <fieldset>
+                           <div class="col-md-12">
+                              <div class="row">
+                                 
+                                     {{form.body}}
+
+                              </div>
+                              <div class="row margin_top_30">
+                                 <div class="col-md-12">
+                                    <div class="center">
+                                       <input type="submit" value="Comment" />
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            {%endif%}
+         </div>
+      </section>
+      <!-- end section -->
+      
 {% endblock content %}
